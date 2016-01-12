@@ -11,13 +11,14 @@ struct MXSsys
 (
 
 	__doc__ = "help of os like pyhton sys",
-
+	
+	path = this.__path__(),
 	fn __init__ = (
 		#pass
 	),
 
 	fn __new__ = (
-		global os = this
+		global sys = this
 		globalVars.set "sys" this
 	),
 	
@@ -27,14 +28,14 @@ struct MXSsys
 
 	-- methods --
 	
-	fn path filename newname = (
+	fn __path__ = (
 		
-		renameFile filename newname
+		return __lib_paths__
 	),
 	
-	fn platform  filename = (
+	fn platform = (
 		
-		makeDir filename
+		return "win32"
 	),
 	
 	fn modules = (
