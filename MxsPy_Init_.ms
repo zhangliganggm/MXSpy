@@ -2,6 +2,7 @@ __author__ = "ACE"
 
 __modeles__ = #()
 __lib_paths__ = #("//lib")
+None = undefined
 
 fn getFilesRecursive root pattern =
 (
@@ -18,8 +19,6 @@ fn search_lib libname = (
 	/*
 	find *.ms *.mse in sys.path
 	*/
-	
-	
 	
 	if superclassof != StructDef then(
 		self_path = getsourcefilename()
@@ -38,25 +37,27 @@ fn search_lib libname = (
 	
 	)
 
+
 fn import libname = (
-	
+	-- find lib of *.ms
 	packfilenames = search_lib libname
+	
 	if packfilenames.count > 0 do(
 		filein packfilenames[1] quite:true
+		module_init = execute("MXS"+libname+"()")
 		)
 		
-	spack = execute("MXS"+libname+"()")
-	if spack != undefined then (
+	if module_init != undefined then(
 		append __modeles__ spack
 		return OK
 	)else(
-		print "cant'import"
+		print "cant'import module " + libname
 	)
 )
 
 fn len var= (
 	return var.count()
-	
+
 	)
 	
 fn __set__ var = (
@@ -119,11 +120,11 @@ struct list
 
 	fn index var = (
 		
-		return
+		return finditem this.array var
 	),
 	fn extend = (
 		
-		return
+		return undefined
 	),
 	
 	fn sort = (
