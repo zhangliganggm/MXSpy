@@ -20,22 +20,11 @@ struct MXSsocket
 	__doc__ = "help of os like pyhton socket",
 	theTcpListener = undefined,
 	
-	fn __init__ = (
-		#pass
-
-	),
-
-	fn __new__ = (
-		global socket = MXSsocket
-		globalVars.set "socket" MXSsocket
-	),
-	
-
-	fn close=(
+	fn _close_ =(
 		this.theTcpListener.Stop()
 	),
 
-	fn connect ipaddres port =(
+	fn _connect_ ipaddres port =(
 		IPAddress = DotNetClass "System.Net.IPAddress"
 		theIPAddress = IPAddress.Parse ipaddres
 		this.theTcpListener = DotNetObject "System.Net.Sockets.TcpListener" theIPAddress port
@@ -55,7 +44,6 @@ struct MXSsocket
 
 	on create do(
 		this.__new__()
-		this.__init__()
 	)
 )
 

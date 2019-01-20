@@ -13,9 +13,6 @@ struct MXSsys
 	__doc__ = "help of os like pyhton sys",
 	
 	path = this.__path__(),
-	fn __init__ = (
-		#pass
-	),
 
 	fn __new__ = (
 		global sys = this
@@ -45,7 +42,6 @@ struct MXSsys
 		
 	on create do(
 		this.__new__()
-		this.__init__()
 	)
 )
 

@@ -33,14 +33,17 @@ struct MXSpath
 	(
 		return getFileCreateDate filename
 	),
+	
 	fn getctime filename =
 	(
 		return getFileModDate filename
 	),
+	
 	fn join filename1 filename2 =
 	(
 		return pathConfig.appendPath  filename1 filename2
 	),
+	
 	fn isabs filename =
 	(
 		return pathConfig.isAbsolutePath  filename
@@ -53,27 +56,14 @@ struct MXSpath
 
 )
 
+
 struct MXSos
 (
+	__doc__ = "help of os like pyhton os",
 	path = MXSpath,
 	
-	__doc__ = "help of os like pyhton os",
-	
-	fn __init__ = (
-		#pass
-	),
-
-	fn __new__ = (
-		global os = this
-		globalVars.set "os" this
-	),
-	
-	fn __del__ = (
-		
-	),
-
 	-- methods --
-	
+
 	fn rename filename newname = (
 		
 		renameFile filename newname
@@ -87,18 +77,8 @@ struct MXSos
 	fn listdir filename = (
 		
 		getDirectories  filename + getFiles (filename+ "\\*.*")
-	),
-		
-	on create do(
-		this.__new__()
-		this.__init__()
 	)
-
 )
 
-
-
-
-	
 
 

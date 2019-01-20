@@ -25,20 +25,7 @@ struct MXSthreading
 
 	__doc__ = "help of os like pyhton thread",
 	BackgroundWorker = undefined,
-	
-	fn __init__ = (
-		#pass
-	),
 
-	fn __new__ = (
-		global threading = MXSthreading
-		globalVars.set "threading" MXSthreading
-	),
-	
-	fn __del__ = (
-		
-	),
-	
 	fn start_new_thread func args:undefined =(
 		
 		this.BackgroundWorker = DotNetObject "System.ComponentModel.BackgroundWorker"
@@ -50,11 +37,6 @@ struct MXSthreading
 	fn stop = (
 		this.BackgroundWorker.CancelAsync()
 		this.BackgroundWorker.Dispose()
-	),
-
-	on create do(
-		this.__new__()
-		this.__init__()
 	)
 )
 
